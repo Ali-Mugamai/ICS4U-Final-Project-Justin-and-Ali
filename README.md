@@ -1,6 +1,4 @@
-# https://studious-space-adventure-v975jr4g4q73w4gw-8080.app.github.dev/
-
-# Phaser Rollup TypeScript Template
+# https://justin-lavoie16.github.io/ICS4U-Final-Project-Justin-and-Ali/
 
 This is a Phaser 3 project template that uses Rollup for bundling. It supports hot-reloading for quick development workflow, inclues TypeScript support and scripts to generate production-ready builds.
 
