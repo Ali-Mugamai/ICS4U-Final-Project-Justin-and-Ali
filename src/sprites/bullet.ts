@@ -5,7 +5,7 @@ class Bullet extends Physics.Arcade.Image {
     constructor(scene: Scene, x: number, y: number) {
         super(scene, x, y, 'bullet'); // 'bullet' should be the key for the bullet image
         scene.add.existing(this);
-        scene.physics.world.enable(this);
+        //scene.physics.world.enable(this);
 
         this.setVelocityX(300); // Move bullet horizontally to the right
         this.setCollideWorldBounds(true); // Bullet will collide with world bounds
