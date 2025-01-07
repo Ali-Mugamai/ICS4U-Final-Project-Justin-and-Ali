@@ -26,7 +26,7 @@ export class Game extends Phaser.Scene {
         this.background.setScrollFactor(0);
 
         // Set the world bounds so the player can't go below y = 450
-        this.physics.world.setBounds(0, 0, 5048, 2450);
+        this.physics.world.setBounds(0, 0, 1048, 2450);
 
         // Create Player 1 and add to scene
         this.player1 = new Player({
