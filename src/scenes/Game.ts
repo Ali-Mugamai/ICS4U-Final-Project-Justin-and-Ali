@@ -1,4 +1,4 @@
-//import Phaser from 'phaser';
+import Phaser from 'phaser';
 import Player from '../sprites/Player';
 import Player2 from '../sprites/Player2';
 
@@ -19,7 +19,7 @@ export class Game extends Phaser.Scene {
 
     create() {
         this.camera = this.cameras.main;
-        this.camera.setBounds(0, 0, 5048, 2000);
+        this.camera.setBounds(0, 0, 2048, 2000);
 
         // Add background as a TileSprite for repeating background
         this.background = this.add.tileSprite(0, 0, 2048, 576, 'logo2').setOrigin(0, 0);
