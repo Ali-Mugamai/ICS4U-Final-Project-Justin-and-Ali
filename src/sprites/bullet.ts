@@ -16,6 +16,7 @@ class Bullet extends Physics.Arcade.Image {
     // Optionally, add functionality to destroy bullet when it goes off-screen
     update() {
         if (this.x > 2048 || this.x < 0) { // Adjust the condition for screen bounds
+            this.destroy
             this.setActive(false);
             this.setVisible(false);
         }
