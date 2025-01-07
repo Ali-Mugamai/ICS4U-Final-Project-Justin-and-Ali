@@ -1,4 +1,4 @@
-import Phaser from 'phaser';
+//import Phaser from 'phaser';
 import Player from '../sprites/Player';
 import Player2 from '../sprites/Player2';
 
