@@ -5,18 +5,16 @@ import Player2 from '../sprites/Player2';
 export class Game extends Phaser.Scene {
     private camera: Phaser.Cameras.Scene2D.Camera;
     private background: Phaser.GameObjects.TileSprite;
-
-    private player1HealthText: Phaser.GameObjects.Text;
-    private player1ScoreText: Phaser.GameObjects.Text;
-    private player2HealthText: Phaser.GameObjects.Text;
-    private player2ScoreText: Phaser.GameObjects.Text;
-
-    private helpText: Phaser.GameObjects.Text;
+    private healthText: Phaser.GameObjects.Text;
+    private scoreText: Phaser.GameObjects.Text;
 
     private player1: Player | null = null;
     private player2: Player2 | null = null;
     private platforms: Phaser.Physics.Arcade.Group;
     private finalScore: number = 0;
+
+    private player1Bullets: Phaser.Physics.Arcade.Group;
+    private player2Bullets: Phaser.Physics.Arcade.Group;
 
     constructor() {
         super('Game');
@@ -24,42 +22,34 @@ export class Game extends Phaser.Scene {
 
     create() {
         this.camera = this.cameras.main;
-        this.camera.setBounds(0, 0, 2048, 1076);
+        this.camera.setBounds(0, 0, 2048, 576);
 
         // Add background as a TileSprite for repeating background
-        this.background = this.add.tileSprite(0, 0, 2048, 1576, 'scenery').setOrigin(0, 0);
+        this.background = this.add.tileSprite(0, 0, 2048, 576, 'logo2').setOrigin(0, 0);
         this.background.setScrollFactor(0);
 
         // Set the world bounds so the player can't go below y = 450
-        this.physics.world.setBounds(0, 0, 1750, 450);
+        this.physics.world.setBounds(0, 0, 1048, 450);
 
-        // Create Player 1
-        this.player1 = new Player(
-            {
-                scene: this,
-                x: 100,
-                y: 450,
-                texture: 'player1',
-                shootKey: 'SPACE' // Space key for Player 1 to shoot
-            },
-            100,
-            0
-        );
+        // Create Player 1 and add to scene
+        this.player1 = new Player({
+            scene: this,
+            x: 100,
+            y: 450,
+            texture: 'player1',
+            shootKey: 'SPACE' // Space key for Player 1 to shoot
+        }, 100, 0);
 
         this.add.existing(this.player1);
 
-        // Create Player 2
-        this.player2 = new Player2(
-            {
-                scene: this,
-                x: 600,
-                y: 450,
-                texture: 'player2',
-                shootKey: 'E' // 'E' key for Player 2 to shoot
-            },
-            100,
-            0
-        );
+        // Create Player 2 and add to scene
+        this.player2 = new Player2({
+            scene: this,
+            x: 600,
+            y: 450,
+            texture: 'player2',
+            shootKey: 'E' // Enter key for Player 2 to shoot
+        }, 100, 0);
 
         this.add.existing(this.player2);
 
@@ -78,7 +68,7 @@ export class Game extends Phaser.Scene {
             allowGravity: false
         });
 
-        // Generate platforms
+        // Generate platforms every 500 pixels, with a y between 300 and 450
         for (let counter = 0; counter < 2048; counter += 600) {
             const y = Phaser.Math.Between(200, 300);
             this.createPlatform(counter, y, 'platform', 1);
@@ -88,53 +78,63 @@ export class Game extends Phaser.Scene {
         this.physics.add.collider(this.player1, this.platforms);
         this.physics.add.collider(this.player2, this.platforms);
 
-        // Create text displays for health and score
-        this.player1HealthText = this.add.text(10, 10, 'Player 1 HP: ' + (this.player1?.health ?? 0), {
+        // Initialize bullet groups
+        this.player1Bullets = this.physics.add.group();
+        this.player2Bullets = this.physics.add.group();
+
+        // Add collider between Player 1 and Player 2's bullets
+        this.physics.add.collider(this.player1, this.player2Bullets, (player, bullet) => {
+            this.handleBulletHit(player, bullet);
+        });
+
+        // Add collider between Player 2 and Player 1's bullets
+        this.physics.add.collider(this.player2, this.player1Bullets, (player, bullet) => {
+            this.handleBulletHit(player, bullet);
+        });
+
+        // Create text for player's health and score
+        this.healthText = this.add.text(850, 10, 'Health: ' + (this.player1?.health ?? 0), {
             fontFamily: 'Arial Black',
-            fontSize: 20,
+            fontSize: 24,
             color: '#ffffff',
             stroke: '#000000',
-            strokeThickness: 3
+            strokeThickness: 4
         }).setScrollFactor(0);
 
-        this.player1ScoreText = this.add.text(10, 40, 'Player 1 Score: ' + (this.player1?.score ?? 0), {
+        this.scoreText = this.add.text(850, 30, 'Score: ' + (this.player1?.score ?? 0), {
             fontFamily: 'Arial Black',
-            fontSize: 20,
+            fontSize: 24,
             color: '#ffffff',
             stroke: '#000000',
-            strokeThickness: 3
+            strokeThickness: 4
         }).setScrollFactor(0);
 
-        this.player2HealthText = this.add.text(600, 10, 'Player 2 HP: ' + (this.player2?.health ?? 0), {
+        this.helpText = this.add.text(10, 10, 'Use WASD (Player 1) / Arrow keys (Player 2) to move, space/enter to shoot', {
             fontFamily: 'Arial Black',
-            fontSize: 20,
+            fontSize: 24,
             color: '#ffffff',
             stroke: '#000000',
-            strokeThickness: 3
+            strokeThickness: 4
         }).setScrollFactor(0);
-
-        this.player2ScoreText = this.add.text(600, 40, 'Player 2 Score: ' + (this.player2?.score ?? 0), {
-            fontFamily: 'Arial Black',
-            fontSize: 20,
-            color: '#ffffff',
-            stroke: '#000000',
-            strokeThickness: 3
-        }).setScrollFactor(0);
-
-        // Create help text
-        this.helpText = this.add.text(300, 450, 'Player 1: WASD to move, SPACE to shoot\nPlayer 2: Arrow keys to move, E to shoot', {
-            fontFamily: 'Arial Black',
-            fontSize: 18,
-            color: '#ffff00',
-            stroke: '#000000',
-            strokeThickness: 4,
-            align: 'center'
-        }).setScrollFactor(0).setOrigin(0.5);
     }
 
+    // create platforms
     createPlatform(x: number, y: number, key: string, scale: number) {
         const platform = this.physics.add.sprite(x, y, key).setScale(scale);
         this.platforms.add(platform);
+    }
+
+    // Handle the collision between a player and a bullet
+    handleBulletHit(player: Phaser.GameObjects.GameObject, bullet: Phaser.GameObjects.GameObject) {
+        console.log(`Collision detected: ${player instanceof Player ? 'Player 1' : 'Player 2'} hit by bullet`);
+
+        // Reduce player's health or apply any other effect
+        if (player instanceof Player || player instanceof Player2) {
+            player.health -= 10; // Example: reduce health by 10
+        }
+
+        // Destroy the bullet after it hits a player
+        bullet.destroy();
     }
 
     update() {
@@ -154,20 +154,18 @@ export class Game extends Phaser.Scene {
             this.camera.scrollX = this.player1.x - this.camera.width / 2;
             this.camera.scrollY = this.player1.y - this.camera.height / 2;
 
-            // Update text displays for health and score
-            this.player1HealthText.setText('Player 1 HP: ' + this.player1.health);
-            this.player1ScoreText.setText('Player 1 Score: ' + this.player1.score);
+            // Update text displaying Player 1's health and score
+            this.healthText.setText('Health: ' + this.player1.health);
+            this.scoreText.setText('Score: ' + this.player1.score);
 
-            this.player2HealthText.setText('Player 2 HP: ' + this.player2.health);
-            this.player2ScoreText.setText('Player 2 Score: ' + this.player2.score);
-
-            // Check if any player's health is 0, go to game over
-            if (this.player1.health <= 0) {
+            // Check if Player 1's health is 0, go to game over
+            if (this.player1.health == 0) {
                 this.finalScore = this.player1.score;
                 this.scene.start('GameOver', { score: this.finalScore });
             }
 
-            if (this.player2.health <= 0) {
+            // Check if Player 2's health is 0, go to game over
+            if (this.player2.health == 0) {
                 this.finalScore = this.player2.score;
                 this.scene.start('GameOver', { score: this.finalScore });
             }
