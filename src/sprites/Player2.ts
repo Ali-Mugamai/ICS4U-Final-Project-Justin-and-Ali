@@ -1,5 +1,5 @@
 import { Physics, Scene } from 'phaser';
-import Bullet from './bullet';  // Correct path for Bullet class
+import Bullet from './bullet'; // Correct path for Bullet class
 
 interface PlayerConfig {
     scene: Scene;
@@ -16,11 +16,11 @@ class Player2 extends Physics.Arcade.Sprite {
         S: Phaser.Input.Keyboard.Key;
         D: Phaser.Input.Keyboard.Key;
     } | null;
-    private shootKey: Phaser.Input.Keyboard.Key | null;  // Store shoot key
+    private shootKey: Phaser.Input.Keyboard.Key | null; // Store shoot key
     public health: number = 100;
     public score: number;
-    private lastShotTime: number = 0;  // Track the last shot time
-    private shootCooldown: number = 450;  // 100ms cooldown between shots
+    private lastShotTime: number = 0; // Track the last shot time
+    private shootCooldown: number = 450; // Cooldown between shots (450ms)
 
     constructor(config: PlayerConfig, health: number, score: number) {
         super(config.scene, config.x, config.y, config.texture);
@@ -43,7 +43,10 @@ class Player2 extends Physics.Arcade.Sprite {
         // Create shoot key
         this.shootKey = config.scene.input.keyboard?.addKey(config.shootKey) || null;
 
-        // health and score
+        // Initialize the shoot key listener
+        this.initializeShootKey();
+
+        // Health and score
         this.health = health;
         this.score = score;
 
@@ -51,22 +54,35 @@ class Player2 extends Physics.Arcade.Sprite {
         (this.body as Phaser.Physics.Arcade.Body).setGravityY(300);
     }
 
-    // Create bullet when shoot key is pressed
+    // Initialize the shoot key listener
+    initializeShootKey() {
+        if (this.shootKey) {
+            // Reset texture when the shoot key is released
+            this.shootKey.on('up', () => {
+                console.log('Player 2 shoot key released'); // Debug message
+                this.setTexture('player2'); // Replace 'player2' with your player's idle sprite
+            });
+        }
+    }
+
+    // Create bullet when the shoot key is pressed
     shootBullet() {
         const currentTime = this.scene.time.now;
 
         // Check if the shoot key was just pressed and if enough time has passed since the last shot
         if (this.shootKey?.isDown && currentTime - this.lastShotTime > this.shootCooldown) {
-            // Ensure scene is properly added and physics is set
+            // Change to shooting sprite
+            this.setTexture('gun2'); // Replace 'gun2' with the key for your shooting sprite
+
+            // Create and configure the bullet
             const bullet = new Bullet(this.scene, this.x, this.y);
             this.scene.add.existing(bullet);
-            this.scene.physics.world.enable(bullet);  // Enable physics for the bullet
-            bullet.setVelocityX(-300);  // Move bullet to the left (Player2 shoots to the left)
+            this.scene.physics.world.enable(bullet); // Enable physics for the bullet
+            bullet.setVelocityX(-300); // Move bullet to the left (Player2 shoots to the left)
 
             // Update the last shot time
             this.lastShotTime = currentTime;
         }
-
     }
 
     update() {
