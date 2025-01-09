@@ -24,14 +24,14 @@ export class Game extends Phaser.Scene {
 
     create() {
         this.camera = this.cameras.main;
-        this.camera.setBounds(0, 0, 2048, 1076);
+        this.camera.setBounds(0, 0, 2048, 1500);
 
         // Add background as a TileSprite for repeating background
         this.background = this.add.tileSprite(0, 0, 2048, 1576, 'scenery').setOrigin(0, 0);
         this.background.setScrollFactor(0);
 
         // Set the world bounds so the player can't go below y = 450
-        this.physics.world.setBounds(0, 0, 1750, 450);
+        this.physics.world.setBounds(0, 0, 2100, 1000);
 
         // Create Player 1
         this.player1 = new Player(
@@ -80,13 +80,17 @@ export class Game extends Phaser.Scene {
 
         // Generate platforms
         for (let counter = 0; counter < 2048; counter += 600) {
-            const y = Phaser.Math.Between(200, 300);
+            const y = Phaser.Math.Between(500, 200);
             this.createPlatform(counter, y, 'platform', 1);
         }
 
         // Set collisions between players and platforms
         this.physics.add.collider(this.player1, this.platforms);
         this.physics.add.collider(this.player2, this.platforms);
+
+        this.physics.add.collider(this.player1, this.bullet);
+        this.physics.add.collider(this.player2, this.);
+
 
         // Create text displays for health and score
         this.player1HealthText = this.add.text(10, 10, 'Player 1 HP: ' + (this.player1?.health ?? 0), {
@@ -153,7 +157,6 @@ export class Game extends Phaser.Scene {
             // Make sure the camera follows Player 1
             this.camera.scrollX = this.player1.x - this.camera.width / 2;
             this.camera.scrollY = this.player1.y - this.camera.height / 2;
-
             // Update text displays for health and score
             this.player1HealthText.setText('Player 1 HP: ' + this.player1.health);
             this.player1ScoreText.setText('Player 1 Score: ' + this.player1.score);
