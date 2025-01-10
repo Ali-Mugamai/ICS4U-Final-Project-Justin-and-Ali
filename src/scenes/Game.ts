@@ -1,6 +1,7 @@
 import Phaser from 'phaser';
 import Player from '../sprites/Player';
 import Player2 from '../sprites/Player2';
+import Bullet from '../sprites/bullet';
 
 export class Game extends Phaser.Scene {
     private camera: Phaser.Cameras.Scene2D.Camera;
@@ -17,6 +18,7 @@ export class Game extends Phaser.Scene {
     private player2: Player2 | null = null;
     private platforms: Phaser.Physics.Arcade.Group;
     private finalScore: number = 0;
+    private bullets: Bullet;
 
     constructor() {
         super('Game');
@@ -87,6 +89,10 @@ export class Game extends Phaser.Scene {
         // Set collisions between players and platforms
         this.physics.add.collider(this.player1, this.platforms);
         this.physics.add.collider(this.player2, this.platforms);
+
+        // Set collisions between players and bullets
+        this.physics.add.collider(this.player1, this.bullets);
+        this.physics.add.collider(this.player2, this.bullets);
 
 
         // Create text displays for health and score
