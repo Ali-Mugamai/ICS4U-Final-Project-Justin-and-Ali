@@ -88,9 +88,6 @@ export class Game extends Phaser.Scene {
         this.physics.add.collider(this.player1, this.platforms);
         this.physics.add.collider(this.player2, this.platforms);
 
-        this.physics.add.collider(this.player1, this.bullet);
-        this.physics.add.collider(this.player2, this.);
-
 
         // Create text displays for health and score
         this.player1HealthText = this.add.text(10, 10, 'Player 1 HP: ' + (this.player1?.health ?? 0), {
