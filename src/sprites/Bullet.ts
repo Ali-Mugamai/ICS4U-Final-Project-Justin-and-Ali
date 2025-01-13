@@ -1,9 +1,10 @@
 import { Physics, Scene } from 'phaser';
-import Player1 from './Player';  // Correct path for Player1
-import Player2 from './Player2';  // Correct path for Player2
+import Player from './Player';  // Correct path for Player
 
-class Bullet extends Physics.Arcade.Image {
-    constructor(scene: Scene, x: number, y: number, velocityX: number) {
+class Bullet extends Physics.Arcade.Sprite {
+    owner: Player;
+
+    constructor(scene: Scene, x: number, y: number, velocityX: number, owner: Player) {
         super(scene, x, y, 'bullet'); // 'bullet' should be the key for the bullet image
 
         // Add the bullet to the scene
@@ -11,9 +12,11 @@ class Bullet extends Physics.Arcade.Image {
         scene.physics.world.enable(this);
 
         this.setVelocityX(velocityX); // Bullet moves horizontally (positive or negative based on velocityX)
-        this.setCollideWorldBounds(false); // Optional: set true if you want bullets to stop at the world bounds
+        this.setCollideWorldBounds(true); // Set true to make bullets stop at the world bounds
         this.setActive(true); // Mark bullet as active
         this.setVisible(true); // Bullet is visible
+
+        this.owner = owner; // Set the owner of the bullet
     }
 
     update() {
@@ -23,10 +26,10 @@ class Bullet extends Physics.Arcade.Image {
     }
 
     // Handle collision with players
-    handleCollision(player: Player1 | Player2) {
-        if (player.health > 0) {
+    handleCollision(player: Player) {
+        if (player !== this.owner && player.health > 0) { // Check if the player is not the owner
             player.health -= 15;  // Decrease health by 15 when hit by a bullet
-            this.destroy();  // Destroy the bullet
+            this.destroy();  // Destroy the bullet after collision
         }
     }
 }
