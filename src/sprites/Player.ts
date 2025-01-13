@@ -69,7 +69,6 @@ class Player1 extends Physics.Arcade.Sprite {
             this.scene.add.existing(bullet);
             this.scene.physics.world.enable(bullet); // Enable physics for the bullet
             bullet.setVelocityX(500); // Move bullet to the right (adjust as needed)
-
             // Update the last shot time
             this.lastShotTime = currentTime;
         }

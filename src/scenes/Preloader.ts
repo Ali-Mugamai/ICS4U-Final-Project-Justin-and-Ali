@@ -43,6 +43,7 @@ export class Preloader extends Scene
         this.load.image('logo2', 'final_banner.jpg');
         // In Preloader Scene
         this.load.image('bullet', 'bullet.png');
+        this.load.image('bullet2', 'bullet2.png');
 
 
         
