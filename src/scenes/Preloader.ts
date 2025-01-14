@@ -44,6 +44,11 @@ export class Preloader extends Scene
         // In Preloader Scene
         this.load.image('bullet', 'bullet.png');
         this.load.image('bullet2', 'bullet2.png');
+        this.load.image('win1', 'player1win.jpg');
+        this.load.image('win2', 'player2win.jpg');
+        this.load.audio('gameover', 'gameover.mp3')
+        this.load.audio('boom', 'gunshot.mp3')
+        this.load.audio('gamestartup', 'gamestart.mp3')
 
 
         
