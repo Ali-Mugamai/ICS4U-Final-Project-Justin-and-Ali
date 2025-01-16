@@ -1,4 +1,13 @@
 // src/scenes/GameOver.ts
+
+/*
+ * This is the gameover scene for the game
+ *
+ * @author  Ali Mugamai and Justin Lavoie
+ * @version 1.0
+ * @since   2024-01-15
+ */
+
 import Phaser from 'phaser';
 
 export class GameOver extends Phaser.Scene {
@@ -10,7 +19,7 @@ export class GameOver extends Phaser.Scene {
 
     create(data: { winner: string }) {
         // Play the gameover sound
-        this.sound.play('gameover');
+        this.sound.play('win');
 
         // Determine the winner image key
         let winnerImageKey: string;

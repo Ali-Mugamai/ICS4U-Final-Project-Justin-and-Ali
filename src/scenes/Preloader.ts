@@ -1,3 +1,11 @@
+/*
+ * This is the preloader for the game sprites, sounds and scenes
+ *
+ * @author  Ali Mugamai and Justin Lavoie
+ * @version 1.0
+ * @since   2024-01-15
+ */
+
 import { Scene } from 'phaser';
 
 export class Preloader extends Scene
@@ -46,9 +54,11 @@ export class Preloader extends Scene
         this.load.image('bullet2', 'bullet2.png');
         this.load.image('win1', 'player1win.jpg');
         this.load.image('win2', 'player2win.jpg');
-        this.load.audio('gameover', 'gameover.mp3')
+        //sound effects
+        this.load.audio('dmginflict', 'dmg.mp3')
         this.load.audio('boom', 'gunshot.mp3')
         this.load.audio('gamestartup', 'gamestart.mp3')
+        this.load.audio('win', 'win.mp3')
 
 
         

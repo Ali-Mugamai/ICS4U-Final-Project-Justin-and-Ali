@@ -1,3 +1,11 @@
+/*
+ * This is the game scene
+ *
+ * @author  Ali Mugamai and Justin Lavoie
+ * @version 1.0
+ * @since   2024-01-15
+ */
+
 import Phaser from 'phaser';
 import Player from '../sprites/Player'; // Import Player
 import Bullet from '../sprites/Bullet'; // Import Bullet class
@@ -18,6 +26,7 @@ export class Game extends Phaser.Scene {
     }
 
     create() {
+        this.sound.play('gamestartup')
         this.camera = this.cameras.main;
         this.camera.setBounds(0, 0, 2048, 1500);
 
@@ -68,7 +77,7 @@ export class Game extends Phaser.Scene {
 
         this.bullets = this.physics.add.group({
             classType: Bullet,
-            runChildUpdate: true
+            runChildUpdate: true,
         });
 
         // Handle bullet collisions with players
@@ -149,6 +158,7 @@ export class Game extends Phaser.Scene {
 
     handleBulletCollision(player, bullet) {
         bullet.handleCollision(player); // Call the bullet's collision handler
+        this.sound.play('dmginflict')
     }
 
     createPlatform(x: number, y: number, key: string, scale: number) {

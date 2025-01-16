@@ -1,3 +1,11 @@
+/*
+ * This is the mainmenu scene for the game
+ *
+ * @author  Ali Mugamai and Justin Lavoie
+ * @version 1.0
+ * @since   2024-01-15
+ */
+
 import { Scene, GameObjects } from 'phaser';
 
 export class MainMenu extends Scene

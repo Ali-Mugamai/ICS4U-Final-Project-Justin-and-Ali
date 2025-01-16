@@ -1,5 +1,14 @@
+/*
+ * This is the Player class for the game
+ *
+ * @author  Ali Mugamai and Justin Lavoie
+ * @version 1.0
+ * @since   2024-01-15
+ */
+
 import { Physics, Scene } from 'phaser';
 import Bullet from './Bullet'; // Ensure the correct import path for Bullet
+import Phaser from 'phaser';
 
 interface PlayerConfig {
     scene: Scene;
@@ -87,6 +96,8 @@ class Player extends Physics.Arcade.Sprite {
             this.scene.bullets.add(bullet);
             this.lastShotTime = currentTime;
 
+            this.scene.sound.play('boom')
+
             // Adjust direction based on the player control scheme
             if (this.cursors) {
                 this.setTexture('gun1'); // Player 1's shooting texture
@@ -101,7 +112,6 @@ class Player extends Physics.Arcade.Sprite {
     update() {
         // Call shootBullet method when shoot key is pressed
         this.shootBullet();
-
         if (this.cursors) {
             const speed = 200;
 
