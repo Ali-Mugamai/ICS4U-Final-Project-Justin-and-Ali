@@ -10,7 +10,7 @@ export class GameOver extends Phaser.Scene {
 
     create(data: { winner: string }) {
         // Play the gameover sound
-        this.sound.play('gameover');
+        this.sound.play('win');
 
         // Determine the winner image key
         let winnerImageKey: string;

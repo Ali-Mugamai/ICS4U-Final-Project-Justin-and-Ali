@@ -1,5 +1,6 @@
-import { Physics, Scene } from 'phaser';
+import { Physics, Scene, Sound } from 'phaser';
 import Player from './Player';  // Correct path for Player
+import Phaser from 'phaser';
 
 class Bullet extends Physics.Arcade.Sprite {
     owner: Player;

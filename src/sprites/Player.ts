@@ -1,5 +1,6 @@
 import { Physics, Scene } from 'phaser';
 import Bullet from './Bullet'; // Ensure the correct import path for Bullet
+import Phaser from 'phaser';
 
 interface PlayerConfig {
     scene: Scene;
@@ -101,7 +102,6 @@ class Player extends Physics.Arcade.Sprite {
     update() {
         // Call shootBullet method when shoot key is pressed
         this.shootBullet();
-
         if (this.cursors) {
             const speed = 200;
 
