@@ -88,6 +88,8 @@ class Player extends Physics.Arcade.Sprite {
             this.scene.bullets.add(bullet);
             this.lastShotTime = currentTime;
 
+            this.scene.sound.play('boom')
+
             // Adjust direction based on the player control scheme
             if (this.cursors) {
                 this.setTexture('gun1'); // Player 1's shooting texture
