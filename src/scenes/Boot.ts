@@ -1,3 +1,11 @@
+/*
+ * This is the bootup scene for the game
+ *
+ * @author  Ali Mugamai and Justin Lavoie
+ * @version 1.0
+ * @since   2024-01-15
+ */
+
 import { Scene } from 'phaser';
 
 export class Boot extends Scene

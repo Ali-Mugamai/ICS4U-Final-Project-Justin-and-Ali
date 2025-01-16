@@ -1,3 +1,11 @@
+/*
+ * This is the Player class for the game
+ *
+ * @author  Ali Mugamai and Justin Lavoie
+ * @version 1.0
+ * @since   2024-01-15
+ */
+
 import { Physics, Scene } from 'phaser';
 import Bullet from './Bullet'; // Ensure the correct import path for Bullet
 import Phaser from 'phaser';

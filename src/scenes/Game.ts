@@ -1,3 +1,11 @@
+/*
+ * This is the game scene
+ *
+ * @author  Ali Mugamai and Justin Lavoie
+ * @version 1.0
+ * @since   2024-01-15
+ */
+
 import Phaser from 'phaser';
 import Player from '../sprites/Player'; // Import Player
 import Bullet from '../sprites/Bullet'; // Import Bullet class
