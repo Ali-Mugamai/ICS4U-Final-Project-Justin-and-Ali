@@ -27,6 +27,7 @@ export class Game extends Phaser.Scene {
 
     create() {
         this.sound.play('gamestartup')
+
         this.camera = this.cameras.main;
         this.camera.setBounds(0, 0, 2048, 1500);
 
@@ -158,7 +159,7 @@ export class Game extends Phaser.Scene {
 
     handleBulletCollision(player, bullet) {
         bullet.handleCollision(player); // Call the bullet's collision handler
-        this.sound.play('dmginflict')
+        this.sound.play('gameover')
     }
 
     createPlatform(x: number, y: number, key: string, scale: number) {
