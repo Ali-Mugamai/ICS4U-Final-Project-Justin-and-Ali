@@ -159,7 +159,7 @@ export class Game extends Phaser.Scene {
 
     handleBulletCollision(player, bullet) {
         bullet.handleCollision(player); // Call the bullet's collision handler
-        this.sound.play('gameover')
+        this.sound.play('dmginflict')
     }
 
     createPlatform(x: number, y: number, key: string, scale: number) {
