@@ -1,21 +1,17 @@
-## DUAL CLASH
+## ⚔️ DUAL CLASH ⚔️
 ![TS](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white) 
 ![HTML](https://img.shields.io/badge/html-%23E34F26.svg?style=for-the-badge&logo=html&logoColor=white)
 ![CSS](https://img.shields.io/badge/css-%231572B6.svg?style=for-the-badge&logo=css&logoColor=white)
 
-
-
-
 ## PLAY: https://justin-lavoie16.github.io/ICS4U-Final-Project-Justin-and-Ali/
 
-This is a local multiplayer video game that makes use of Phaser 3 in order to function
+This is a LOCAL multiplayer VS video game that makes use of Phaser 3 in order to function
 
 ![screenshot](screenshot.png)
 
 ## CONTROLS (same keyboard)
 
-## PLAYER 1:
-(arrow keys)
+## PLAYER 1 (arrow keys):
 
 up: UP
 down: DOWN
@@ -23,8 +19,7 @@ left: LEFT
 right: RIGHT
 shoot: SPACE
 
-## PLAYER 2:
-(WASD)
+## PLAYER 2 (WASD):
 up: W
 down: S
 left: A
@@ -54,40 +49,15 @@ shoot: E
 - `src/scenes/` - The Phaser Scenes are in this folder.
 - `public/style.css` - Some simple CSS rules to help with page layout.
 - `public/assets` - Contains the static assets used by the game.
-
-## Handling Assets
-
-Rollup supports loading assets via JavaScript module `import` statements.
-
-This template provides support for both embedding assets and also loading them from a static folder. To embed an asset, you can import it at the top of the JavaScript file you are using it in:
-
-```js
-import logoImg from './assets/logo.png'
-```
-
-To load static files such as audio files, videos, etc place them into the `public/assets` folder. Then you can use this path in the Loader calls within Phaser:
-
-```ts
-preload ()
-{
-    //  This is an example of an imported bundled image.
-    //  Remember to import it at the top of this file
-    this.load.image('logo', logoImg);
-
-    //  This is an example of loading a static image
-    //  from the public/assets folder:
-    this.load.image('background', 'assets/bg.png');
-}
-```
-
-When you issue the `npm run build` command, all static assets are automatically copied to the `dist/assets` folder.
+- `src/scenes` - holds all the code in relation to the game scenes
+- `src/sprites` - holds all code in relation to the bullets and player
 
 ## Join the Phaser Community!
 
 **Visit:** The [Phaser website](https://phaser.io) and follow on [Phaser Twitter](https://twitter.com/phaser_)<br />
 **Play:** Some of the amazing games [#madewithphaser](https://twitter.com/search?q=%23madewithphaser&src=typed_query&f=live)<br />
 **Learn:** [API Docs](https://newdocs.phaser.io), [Support Forum](https://phaser.discourse.group/) and [StackOverflow](https://stackoverflow.com/questions/tagged/phaser-framework)<br />
-**Discord:** Join us on [Discord](https://discord.gg/phaser)<br />
+**Discord:** Join on [Discord](https://discord.gg/phaser)<br />
 **Code:** 2000+ [Examples](https://labs.phaser.io)<br />
 **Read:** The [Phaser World](https://phaser.io/community/newsletter) Newsletter<br />
 
@@ -95,4 +65,4 @@ Created by [Phaser Studio](mailto:support@phaser.io). Powered by coffee, anime, 
 
 The Phaser logo and characters are &copy; 2011 - 2024 Phaser Studio Inc.
 
-All rights reserved.
+Copyright (c) Ali Mugamai and Justin Lavoie. All rights reserved.
