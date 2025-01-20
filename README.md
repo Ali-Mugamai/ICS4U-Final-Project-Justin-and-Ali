@@ -37,9 +37,7 @@ The local development server runs on `http://localhost:8080` by default. Please 
 
 Once the server is running you can edit any of the files in the `src` folder. Rollup will automatically recompile your code and then reload the browser.
 
-## Template Project Structure
-
-We have provided a default project structure to get you started. This is as follows:
+## Project Structure
 
 - `index.html` - A basic HTML page to contain the game.
 - `src` - Contains the game source code.
@@ -61,7 +59,7 @@ import logoImg from './assets/logo.png'
 
 To load static files such as audio files, videos, etc place them into the `public/assets` folder. Then you can use this path in the Loader calls within Phaser:
 
-```js
+```ts
 preload ()
 {
     //  This is an example of an imported bundled image.
@@ -81,8 +79,6 @@ When you issue the `npm run build` command, all static assets are automatically 
 After you run the `npm run build` command, your code will be built into a single bundle and saved to the `dist` folder, along with any other assets your project imported, or stored in the public assets folder.
 
 In order to deploy your game, you will need to upload *all* of the contents of the `dist` folder to a public facing web server.
-
-## Customizing the Template
 
 ### Babel
 
@@ -147,8 +143,6 @@ After:
 Either of these will stop `log.js` from running. If you do decide to do this, please could you at least join our Discord and tell us which template you're using! Or send us a quick email. Either will be super-helpful, thank you.
 
 ## Join the Phaser Community!
-
-We love to see what developers like you create with Phaser! It really motivates us to keep improving. So please join our community and show-off your work 😄
 
 **Visit:** The [Phaser website](https://phaser.io) and follow on [Phaser Twitter](https://twitter.com/phaser_)<br />
 **Play:** Some of the amazing games [#madewithphaser](https://twitter.com/search?q=%23madewithphaser&src=typed_query&f=live)<br />
