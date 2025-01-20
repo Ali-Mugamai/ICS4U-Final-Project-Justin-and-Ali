@@ -14,23 +14,22 @@ This is a local multiplayer video game that makes use of Phaser 3 in order to fu
 
 ## CONTROLS (same keyboard)
 
-|PLAYER 1:|
-|(arrow keys)|
-||
-|up: UP|
-|down: DOWN|
-|left: LEFT|
-|right: RIGHT|
-|shoot: SPACE|
-||
-|PLAYER 2:|
-|(WASD)|
-||
-|up: W|
-|down: S|
-|left: A|
-|right: D|
-|shoot: E|
+## PLAYER 1:
+(arrow keys)
+
+up: UP
+down: DOWN
+left: LEFT
+right: RIGHT
+shoot: SPACE
+
+## PLAYER 2:
+(WASD)
+up: W
+down: S
+left: A
+right: D
+shoot: E
 
 ## Requirements
 
