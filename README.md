@@ -1,10 +1,29 @@
-# https://justin-lavoie16.github.io/ICS4U-Final-Project-Justin-and-Ali/
 
-This is a Phaser 3 project template that uses Rollup for bundling. It supports hot-reloading for quick development workflow, inclues TypeScript support and scripts to generate production-ready builds.
+## PLAY: https://justin-lavoie16.github.io/ICS4U-Final-Project-Justin-and-Ali/
 
-**[This Template is also available as a JavaScript version.](https://github.com/phaserjs/template-rollup)**
+This is a multiplayer video game that makes use of Phaser 3 in order to function
 
 ![screenshot](screenshot.png)
+
+## Controls
+
+PLAYER 1:
+(arrow keys)
+
+up: UP
+down: DOWN
+left: LEFT
+right: RIGHT
+shoot: SPACE
+
+PLAYER 2:
+(WASD)
+
+up: W
+down: S
+left: A
+right: D
+shoot: E
 
 ## Requirements
 
