@@ -146,7 +146,7 @@ export class Game extends Phaser.Scene {
 
 
 
-        this.player2HealthText = this.add.text(1450, 10, 'Player 2 HP: ' + (this.player2?.health ?? 0), {
+        this.player2HealthText = this.add.text(1600, 10, 'Player 2 HP: ' + (this.player2?.health ?? 0), {
             fontFamily: 'Impact, fantasy',
             fontSize: 50,
             color: '#00ff00',
