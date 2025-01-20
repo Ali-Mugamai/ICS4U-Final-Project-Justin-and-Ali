@@ -2,11 +2,11 @@
 
 ## PLAY: https://justin-lavoie16.github.io/ICS4U-Final-Project-Justin-and-Ali/
 
-This is a multiplayer video game that makes use of Phaser 3 in order to function
+This is a local multiplayer video game that makes use of Phaser 3 in order to function
 
 ![screenshot](screenshot.png)
 
-## Controls
+## CONTROLS (same keyboard)
 
 PLAYER 1:
 (arrow keys)
