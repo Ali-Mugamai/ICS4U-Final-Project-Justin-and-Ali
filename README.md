@@ -5,7 +5,7 @@
 
 ## PLAY: https://justin-lavoie16.github.io/ICS4U-Final-Project-Justin-and-Ali/
 
-This is a LOCAL multiplayer VS video game that makes use of Phaser 3 in order to function
+This is a LOCAL multiplayer VS video game that makes use of Phaser 3 in order to function, maneuver through platforms and land your bullets on the opposing player in order to drain their health. the first player to render their opponents health to 0 wins!
 
 ![screenshot](screenshot.png)
 

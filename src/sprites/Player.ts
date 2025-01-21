@@ -29,7 +29,6 @@ class Player extends Physics.Arcade.Sprite {
     } | null;
     private shootKey: Phaser.Input.Keyboard.Key | null; // Store shoot key
     public health: number = 100;
-    public score: number;
     private lastShotTime: number = 0; // Track the last shot time
     private shootCooldown: number = 450; // Cooldown between shots (450ms)
 
@@ -65,7 +64,6 @@ class Player extends Physics.Arcade.Sprite {
 
         // Health and score
         this.health = health;
-        this.score = score;
 
         // Apply gravity
         (this.body as Phaser.Physics.Arcade.Body).setGravityY(300);

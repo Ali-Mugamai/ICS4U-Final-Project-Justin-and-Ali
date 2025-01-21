@@ -135,7 +135,7 @@ export class Game extends Phaser.Scene {
         }).setScrollFactor(0);
 
 
-        // Create text displays for health and score
+        // Create text displays for health and
         this.player1HealthText = this.add.text(10, 10, 'Player 1 HP: ' + (this.player1?.health ?? 0), {
             fontFamily: 'Impact, fantasy',
             fontSize: 50,
@@ -179,7 +179,7 @@ export class Game extends Phaser.Scene {
     
             // Make sure the camera follows Player 1
 
-            // Update text displays for health and score
+            // Update text displays for health
             this.player1HealthText.setText('Player 1 HP: ' + this.player1.health);
     
             this.player2HealthText.setText('Player 2 HP: ' + this.player2.health);
